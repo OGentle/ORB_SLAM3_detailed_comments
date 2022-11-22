@@ -122,12 +122,15 @@ public:
 
 
     // This stops local mapping thread (map building) and performs only camera tracking.
+    // 调用此函数会终止建图线程，只运行相机追踪
     void ActivateLocalizationMode();
     // This resumes local mapping thread and performs SLAM again.
+    // 调用此函数重新开启局部建图线程，继续SLAM
     void DeactivateLocalizationMode();
 
     // Returns true if there have been a big map change (loop closure, global BA)
     // since last call to this function
+    // 如果自从上次调用此函数后，有map变化(回环、全局BA)，则返回true
     bool MapChanged();
 
     // Reset the system (clear Atlas or the active map)
