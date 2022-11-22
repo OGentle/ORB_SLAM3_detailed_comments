@@ -47,10 +47,11 @@ int main(int argc, char **argv)
     int nImages = vstrImageFilenames.size();
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM3::System SLAM(argv[1],argv[2],ORB_SLAM3::System::MONOCULAR,true);
+    ORB_SLAM3::System SLAM(argv[1],argv[2],ORB_SLAM3::System::MONOCULAR,true); //创建SLAM对象，所有的SLAM相关操作都封装到了此函数中
+
     float imageScale = SLAM.GetImageScale();
 
-    // Vector for tracking time statistics
+    // Vector for tracking time statistics 用于计算tracking时间的vector
     vector<float> vTimesTrack;
     vTimesTrack.resize(nImages);
 
@@ -63,6 +64,9 @@ int main(int argc, char **argv)
     double t_track = 0.f;
 
     cv::Mat im;
+    
+    //读取image并进行SLAM的主循环
+
     for(int ni=0; ni<nImages; ni++)
     {
         // Read image from file
